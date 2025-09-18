@@ -1,0 +1,113 @@
+/* General body styling */
+
+body {
+
+  font-family: Arial, sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+}
+
+
+
+/* Header Section */
+
+.header {
+
+  background-color: green;
+
+  color: white;
+
+  text-align: left;
+
+  padding: 20px;
+
+}
+
+
+
+/* Content section */
+
+.content {
+	align: center;
+  padding: 20px;
+
+}
+
+
+
+/* Styling for the heading (Same Page Different Stylesheets) */
+
+h2 {
+
+  color: black;
+
+}
+
+
+
+/* Styling for the text displaying stylesheets */
+
+.styles {
+
+  color: black;
+
+  font-weight: bold;
+
+}
+
+
+
+/* Button Container */
+
+.button-container {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start; /* Align buttons to the left */
+
+  margin-top: 20px;
+
+}
+
+
+
+/* Individual button styling */
+
+.style-btn {
+
+  background-color: #D3D3D3;
+
+  border: 2px solid grey;
+
+  color: black;
+
+  padding: 10px 20px;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  transition: background-color 0.3s;
+
+}
+
+
+
+/* Hover effect on buttons */
+
+.style-btn:hover {
+
+  background-color: lightgray;
+
+}
+
+div#side{
+width: 250px;
+color: right;
+backgroud-color: lightblue;
+}
