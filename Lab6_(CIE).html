@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: wheat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .calculator {
+            background-color: turquoise;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0.1, 0.2, 0.3);
+            width: 300px;
+        }
+        
+        .display {
+            background-color: thistle;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: right;
+            font-size: 32px;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        button {
+            padding: 20px;
+            font-size: 20px;
+            border: 1px solid yellowgreen;
+            border-radius: 5px;
+            background-color: teal;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: tan;
+        }
+        
+        button:active {
+            background-color: steelblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        
+        <div class="buttons">
+            <button onclick="addNumber('7')">7</button>
+            <button onclick="addNumber('8')">8</button>
+            <button onclick="addNumber('9')">9</button>
+            <button onclick="setOperator('/')">/</button>
+            
+            <button onclick="addNumber('4')">4</button>
+            <button onclick="addNumber('5')">5</button>
+            <button onclick="addNumber('6')">6</button>
+            <button onclick="setOperator('*')">*</button>
+            
+            <button onclick="addNumber('1')">1</button>
+            <button onclick="addNumber('2')">2</button>
+            <button onclick="addNumber('3')">3</button>
+            <button onclick="setOperator('-')">-</button>
+            
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="addNumber('0')">0</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="setOperator('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = '0';  
+        let firstNumber = null;  
+        let currentOperator = null;  
+        let waitingForSecondNumber = false; 
+        
+        const display = document.getElementById('display');
+        
+        function addNumber(number) {
+
+            if (waitingForSecondNumber) {
+                displayValue = number;
+                waitingForSecondNumber = false;
+            } else {
+
+                if (displayValue === '0') {
+                    displayValue = number;
+                } else {
+                    displayValue = displayValue + number;
+                }
+            }
+            
+            display.textContent = displayValue;
+        }
+        
+        function setOperator(operator) {
+
+            firstNumber = displayValue;
+            
+            currentOperator = operator;
+            
+            waitingForSecondNumber = true;
+        }
+        
+        function calculate() {
+
+            if (firstNumber === null || currentOperator === null) {
+                return;
+            }
+            
+            const num1 = parseFloat(firstNumber);
+            const num2 = parseFloat(displayValue);
+            let result;
+            
+            if (currentOperator === '+') {
+                result = num1 + num2;
+            } else if (currentOperator === '-') {
+                result = num1 - num2;
+            } else if (currentOperator === '*') {
+                result = num1 * num2;
+            } else if (currentOperator === '/') {
+                result = num1 / num2;
+            }
+            
+            displayValue = result.toString();
+            display.textContent = displayValue;
+            
+            firstNumber = null;
+            currentOperator = null;
+            waitingForSecondNumber = true;
+        }
+        
+        function clearDisplay() {
+            displayValue = '0';
+            firstNumber = null;
+            currentOperator = null;
+            waitingForSecondNumber = false;
+            display.textContent = displayValue;
+        }
+    </script>
+</body>
+</html>
